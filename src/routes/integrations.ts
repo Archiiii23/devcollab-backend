@@ -21,7 +21,7 @@ function frontendBaseUrl(req: Request): string {
   if (process.env.FRONTEND_BASE_URL) return process.env.FRONTEND_BASE_URL.replace(/\/$/, "");
   const origin = req.headers.origin as string | undefined;
   if (origin) return origin;
-  return appBaseUrl(req);
+  return "https://hackathon-round.vercel.app";
 }
 
 async function createOauthState(opts: {

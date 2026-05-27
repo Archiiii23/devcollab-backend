@@ -20,16 +20,22 @@ import { presenceRoutes } from "./routes/presence.js";
 import { integrationRoutes } from "./routes/integrations.js";
 import { webhookRoutes } from "./routes/webhooks.js";
 
+const DEFAULT_FRONTEND_ORIGINS = [
+  "https://hackathon-round.vercel.app",
+];
+
 function buildAllowedOrigins(): (string | RegExp)[] {
   const raw = process.env.ALLOWED_ORIGINS ?? "";
   const list = raw
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
-  // Always allow localhost dev ports
   return [
     /^http:\/\/localhost:\d+$/,
     /^http:\/\/127\.0\.0\.1:\d+$/,
+    // Allow any *.vercel.app preview deployment of the frontend
+    /^https:\/\/[a-z0-9-]+\.vercel\.app$/i,
+    ...DEFAULT_FRONTEND_ORIGINS,
     ...list,
   ];
 }
