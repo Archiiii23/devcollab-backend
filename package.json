@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsx watch src/local-dev.ts",
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "echo 'No build step needed — @vercel/node compiles TS on demand'",
     "seed": "tsx src/seed-cli.ts"
   },
   "engines": {
